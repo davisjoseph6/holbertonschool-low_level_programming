@@ -1,6 +1,6 @@
 /*
  * File: 4-puts.c
- * Auth: Brennan D Baraban <375@holbertonschool.com>
+ * Auth: Davis Joseph <6731@holbertonstudents.com>
  */
 
 #include <stdio.h>
