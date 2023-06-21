@@ -1,17 +1,26 @@
-#include "main.h"
+/*
+ * File: 4-print_alphabt.c
+ * Auth: Davis Joseph
+ */
+
+#include <stdio.h>
 
 /**
-  * _isalpha - Checks for alphabetic character
-  * @c: The character to be checked
-  *
-  * Return: 1 for alphabetic character or 0 for anything else
-  */
-int _isalpha(int c)
+ * main - Prints the alphabet in lowercase, except for q and e.
+ *
+ * Return: Always 0.
+ */
+int main(void)
 {
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122))
+	char letter;
+
+	for (letter = 'a'; letter <= 'z'; letter++)
 	{
-		return (1);
+		if (letter != 'e' && letter != 'q')
+			putchar(letter);
 	}
+
+	putchar('\n');
 
 	return (0);
 }
