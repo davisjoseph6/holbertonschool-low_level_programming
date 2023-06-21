@@ -1,23 +1,24 @@
-/*
- * File: 2-print_alphabet.c
- * Auth: Davis Joseph
- */
-
-#include <main.h>
+#include "holberton.h"
 
 /**
- * main - Prints the alphabet in lowercase.
- *
- * Return: Always 0.
- */
-int main(void)
+  * print_alphabet_x10 - Make alphabet x10 times
+  *
+  * Return: void
+  */
+void print_alphabet_x10(void)
 {
-	char letter;
+	char c;
+	int i = 0;
 
-	for (letter = 'a'; letter <= 'z'; letter++)
-		putchar(letter);
+	while (i <= 9)
+	{
+		for (c = 'a'; c <= 'z'; c++)
+		{
+			_putchar(c);
+		}
 
-	putchar('\n');
+		_putchar('\n');
 
-	return (0);
+		i++;
+	}
 }
