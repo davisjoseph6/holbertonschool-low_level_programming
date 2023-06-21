@@ -5,6 +5,7 @@
  * @c: The character to be expected
  *
  *Return: 1 for alphabetic character or 0 for anything else
+ *
  */
 int _isalpha(int c)
 {
