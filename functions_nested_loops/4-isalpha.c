@@ -1,26 +1,18 @@
-/*
- * File: 4-print_alphabt.c
- * Auth: Davis Joseph
- */
-
-#include <stdio.h>
-
+#include "main.h"
 /**
- * main - Prints the alphabet in lowercase, except for q and e.
+ * _isalpha - main function
  *
- * Return: Always 0.
+ * @c: character to compare
+ *
+ * Return: 1 if true, 0 if false
+ *
  */
-int main(void)
+
+int _isalpha(int c)
 {
-	char letter;
-
-	for (letter = 'a'; letter <= 'z'; letter++)
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 	{
-		if (letter != 'e' && letter != 'q')
-			putchar(letter);
+		return (1);
 	}
-
-	putchar('\n');
-
 	return (0);
 }
