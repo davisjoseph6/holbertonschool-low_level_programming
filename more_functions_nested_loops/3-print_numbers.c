@@ -1,8 +1,3 @@
-/*
-0;10;1c * File: 3-print_numbers.c
- * Auth: Davis Joseph
- */
-
 #include "main.h"
 
 /**
@@ -16,7 +11,7 @@ void print_numbers(void)
 
 	for (x = 0; x <= 9; x++)
 	{
-		putchar(x + '0');
+		_putchar(x + '0');
 	}
 
 	_putchar('\n');
