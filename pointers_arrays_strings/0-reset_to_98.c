@@ -3,7 +3,7 @@
  * Auth: Davis Joseph
  */
 
-#include "holberton.h"
+#include "mainn.h"
 
 /**
  * reset_to_98 - Takes a pointer to an int and updates
