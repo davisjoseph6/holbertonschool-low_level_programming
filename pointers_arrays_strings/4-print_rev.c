@@ -1,23 +1,17 @@
-/*
- * File: 4-print_rev.c
- * Auth: Davis Joseph
- */
-
-#include "main.h"
+#include "holberton.h"
 
 /**
- * print_rev - Prints a string in reverse.
- * @s: The string to be printed.
- */
-void print_rev(char *s)
+  * _puts - Prints a string
+  * @str: The string to print
+  *
+  * Return: void
+  */
+void _puts(char *str)
 {
-	int len = 0, index;
-
-	while (s[index++])
-		len++;
-
-	for (index = len - 1; index >= 0; index--)
-		_putchar(s[index]);
+	for (; *str != '\0'; str++)
+	{
+		_putchar(*str);
+	}
 
 	_putchar('\n');
 }
