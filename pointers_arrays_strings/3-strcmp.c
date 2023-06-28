@@ -1,31 +1,50 @@
 #include "main.h"
-#include <string.h> 
 
 /**
-  * _strncat - Concatenates two strings
-  * @dest: The destination value
-  * @src: The source value
-  * @n: The limit of the concatenation
+  * _strcmp - Compares two strings
+  * @s1: The first string
+  * @s2: The second string
   *
-  * Return: A pointer to the resulting string dest
+  * Return: int value
   */
-char *_strncat(char *dest, char *src, int n)
+int _strcmp(char *s1, char *s2)
 {
-	int dlen = 0, j = 0;
+	int a = 0, b = 0, c = 0, r = 0, lim;
 
-	while (dest[dlen])
+	while (s1[a])
 	{
-		dlen++;
+		a++;
 	}
 
-	while (j < n && src[j])
+	while (s2[b])
 	{
-		dest[dlen] = src[j];
-		dlen++;
-		j++;
+		b++;
 	}
 
-	dest[dlen + n + 1] = '\0';
+	if (a <= b)
+	{
+		lim = a;
+	}
+	else
+	{
+		lim = b;
+	}
 
-	return (dest);
+	while (c <= lim)
+	{
+		if (s1[c] == s2[c])
+		{
+			c++;
+			continue;
+		}
+		else
+		{
+			r = s1[c] - s2[c];
+			break;
+		}
+
+		c++;
+	}
+
+	return (r);
 }
