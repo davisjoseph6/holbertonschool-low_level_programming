@@ -1,25 +1,38 @@
+#include <stdio.h>
 #include "main.h"
-
-/**
- * rev_string - print a string in reverse followed by a new line
- * @s: string to be reversed
- */
 
 void rev_string(char *s)
 {
-	int len, count, end;
-	char i;
+    if (s == NULL)
+        return;
 
-	len = 0;
+    int length = 0;
+    char *end = s;
+    char temp;
 
-	while (s[len] != '\0')
-		len++;
-	len--;
-	for (count = 0; count <= len / 2; count++)
-	{
-		i = s[count];
-		end = s[len - count];
-		s[count] = end;
-		s[len - count] = i;
-	}
+    // Find the length of the string
+    while (*end != '\0') {
+        length++;
+        end++;
+    }
+
+    // Reverse the string by swapping characters
+    end--;
+    while (s < end) {
+        temp = *s;
+        *s = *end;
+        *end = temp;
+        s++;
+        end--;
+    }
+}
+
+int main(void)
+{
+    char s[10] = "My School";
+
+    printf("%s\n", s);
+    rev_string(s);
+    printf("%s\n", s);
+    return 0;
 }
