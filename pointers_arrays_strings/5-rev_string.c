@@ -10,10 +10,12 @@ void rev_string(char *s)
     if (s == NULL)
         return;
 
-    char temp;
-    int length = 0;
     char *start = s;
     char *end = s;
+
+    int length = 0;
+
+    char temp;  /* Move declaration here */
 
     /* Find the length of the string */
     while (*end != '\0') {
