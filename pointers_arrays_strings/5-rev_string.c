@@ -1,4 +1,4 @@
-#include <stddef.h> // Include for NULL definition
+#include <stddef.h>  /* Include for NULL definition */
 #include "main.h"
 
 /**
@@ -15,13 +15,13 @@ void rev_string(char *s)
     char *end = s;
     char temp;
 
-    // Find the length of the string
+    /* Find the length of the string */
     while (*end != '\0') {
         length++;
         end++;
     }
 
-    // Reverse the string by swapping characters
+    /* Reverse the string by swapping characters */
     end--;
 
     while (start < end) {
