@@ -15,6 +15,8 @@ void rev_string(char *s)
     char *end = s;
     char temp;
 
+    int length = 0;  /* Variable declaration moved here */
+
     /* Find the length of the string */
     while (*end != '\0') {
         length++;
