@@ -1,3 +1,4 @@
+#include <stddef.h> // Include for NULL definition
 #include "main.h"
 
 /**
