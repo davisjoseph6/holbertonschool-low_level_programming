@@ -1,20 +1,15 @@
 #include "main.h"
 
 /**
- * main - check the code.
+ * main - check the code
  *
  * Return: Always 0.
  */
 int main(void)
 {
-    int r;
+    char *str;
 
-    r = _islower('H');
-    _putchar(r + '0');
-    r = _islower('o');
-    _putchar(r + '0');
-    r = _islower(108);
-    _putchar(r + '0');
-    _putchar('\n');
+    str = "I do not fear computers. I fear the lack of them - Isaac Asimov";
+    _puts(str);
     return (0);
 }
