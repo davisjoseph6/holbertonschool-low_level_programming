@@ -1,24 +1,39 @@
 /*
- * File: 1-init_dog.c
+ * File: 1-strdup.c
  * Auth: Davis Joseph
  */
 
-#include "dog.h"
+#include "holberton.h"
 #include <stdlib.h>
 
 /**
- * init_dog - Initializes a variable of type struct dog.
- * @d: The dog to be initialized.
- * @name: The name of the dog.
- * @age: The age of the dog.
- * @owner: The owner of the dog.
+ * _strdup - Returns a pointer to a newly-allocated space in memory
+ *           containing a copy of the string given as parameter.
+ * @str: The string to be copied.
+ *
+ * Return: If str == NULL or insufficient memory is available - NULL.
+ *         Otherwise - a pointer to the duplicated string.
  */
-void init_dog(struct dog *d, char *name, float age, char *owner)
+char *_strdup(char *str)
 {
-	if (d != NULL)
-	{
-		d->name = name;
-		d->age = age;
-		d->owner = owner;
-	}
+	char *duplicate;
+	int index, len = 0;
+
+	if (str == NULL)
+		return (NULL);
+
+	for (index = 0; str[index]; index++)
+		len++;
+
+	duplicate = malloc(sizeof(char) * (len + 1));
+
+	if (duplicate == NULL)
+		return (NULL);
+
+	for (index = 0; str[index]; index++)
+		duplicate[index] = str[index];
+
+	duplicate[len] = '\0';
+
+	return (duplicate);
 }
