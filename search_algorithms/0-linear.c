@@ -7,7 +7,7 @@
  * @array: a pointer to the first element of the array to search in
  * @size: the number of elements in array
  * @value:  the value to search for
- * Return: If value is not present in array or if array is NULL, 
+ * Return: If value is not present in array or if array is NULL,
  * your function must return -1
  * else return 0
  */
