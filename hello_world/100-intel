@@ -1,0 +1,5 @@
+#!/bin/bash
+# Generate Intel-syntax assembly from the C file in $CFILE
+# Output name: same as .c but with .s
+gcc -S -masm=intel "$CFILE" -o "${CFILE%.c}.s"
+
