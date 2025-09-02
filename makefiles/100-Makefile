@@ -6,11 +6,13 @@ OBJ = $(SRC:.c=.o)
 
 .PHONY: all clean oclean fclean re
 
-all: $(NAME)
+# Ensure header exists before anything builds
+all: m.h $(NAME)
 
-$(NAME): $(OBJ) m.h
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
+# Use $(RM) exactly twice; don't set RM (GNU make provides rm -f)
 oclean:
 	$(RM) $(OBJ)
 
