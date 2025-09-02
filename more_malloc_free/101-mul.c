@@ -2,8 +2,9 @@
 #include <stdlib.h>
 
 /**
- * _strlen - Returns length of a string.
+ * _strlen - Returns the length of a string.
  * @s: String.
+ *
  * Return: Length.
  */
 int _strlen(char *s)
@@ -16,8 +17,9 @@ int _strlen(char *s)
 }
 
 /**
- * is_digits - Checks if a string contains only decimal digits.
+ * is_digits - Checks if a string has only decimal digits and is not empty.
  * @s: String.
+ *
  * Return: 1 if only digits and not empty, 0 otherwise.
  */
 int is_digits(char *s)
@@ -60,7 +62,33 @@ void print_error_exit(void)
 }
 
 /**
- * print_number_array - Prints an array of digit ints as a number.
+ * normalize - Skips leading zeros and returns pointer to first non-zero char.
+ * @s: Numeric string (only digits).
+ * @out_len: Out-parameter for resulting length after trimming leading zeros.
+ *
+ * Return: Pointer to first non-zero digit, or to the string terminator
+ *         if the number is zero; sets *out_len accordingly.
+ */
+char *normalize(char *s, int *out_len)
+{
+	int i = 0, len;
+
+	len = _strlen(s);
+	while (i < len && s[i] == '0')
+		i++;
+
+	if (i == len)
+	{
+		/* Entire string is zeros: normalized length is 0 */
+		*out_len = 0;
+		return (s + len);
+	}
+	*out_len = len - i;
+	return (s + i);
+}
+
+/**
+ * print_number_array - Prints an array of base-10 digits as a number.
  * @a: Array of digits (0..9).
  * @len: Length of array.
  */
@@ -68,7 +96,6 @@ void print_number_array(int *a, int len)
 {
 	int i = 0;
 
-	/* Skip leading zeros, but ensure we print at least one digit */
 	while (i < (len - 1) && a[i] == 0)
 		i++;
 
@@ -100,10 +127,17 @@ int main(int argc, char *argv[])
 	if (!is_digits(s1) || !is_digits(s2))
 		print_error_exit();
 
-	len1 = _strlen(s1);
-	len2 = _strlen(s2);
-	size = len1 + len2;
+	/* Trim leading zeros; fast-path if any becomes zero */
+	s1 = normalize(s1, &len1);
+	s2 = normalize(s2, &len2);
 
+	if (len1 == 0 || len2 == 0)
+	{
+		print_str("0\n");
+		return (0);
+	}
+
+	size = len1 + len2;
 	res = (int *)malloc(sizeof(int) * size);
 	if (res == NULL)
 		print_error_exit();
@@ -111,7 +145,7 @@ int main(int argc, char *argv[])
 	for (i = 0; i < size; i++)
 		res[i] = 0;
 
-	/* Grade-school multiplication from right to left */
+	/* Grade-school multiplication, right-to-left */
 	for (i = len1 - 1; i >= 0; i--)
 	{
 		int d1 = s1[i] - '0';
@@ -120,13 +154,14 @@ int main(int argc, char *argv[])
 		for (j = len2 - 1; j >= 0; j--)
 		{
 			int d2 = s2[j] - '0';
-			int pos_low = i + j + 1;
-			int sum = d1 * d2 + res[pos_low] + carry;
+			int pos = i + j + 1;
+			int sum = d1 * d2 + res[pos] + carry;
 
-			res[pos_low] = sum % 10;
+			res[pos] = sum % 10;
 			carry = sum / 10;
 		}
-		res[i + j + 1] += carry; /* here j == -1 */
+		/* j == -1 here */
+		res[i] += carry;
 	}
 
 	print_number_array(res, size);
