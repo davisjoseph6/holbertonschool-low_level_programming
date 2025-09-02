@@ -45,6 +45,8 @@ void print_buffer(char *b, int size)
 				printf(" ");
 		}
 
+		printf(" ");
+
 		/* ASCII area: printable chars or '.' */
 		for (i = 0; i < 10 && (off + i) < size; i++)
 		{
