@@ -1,28 +1,20 @@
-# ---- Variables ----
-CC      := gcc
-CFLAGS  := -Wall -Werror -Wextra -pedantic
-NAME    := school
-SRC     := $(wildcard *.c)
-OBJ     := $(SRC:.c=.o)
+CC = gcc
+SRC = main.c holberton.c
+OBJ = $(SRC:.c=.o)
+NAME = holberton
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# ---- Phony rules ----
 .PHONY: all clean oclean fclean re
 
-# ---- Build rules ----
-all: $(NAME)
-
-# Ensure build fails if m.h is missing; link using $(CC) once
-$(NAME): $(OBJ) m.h
+all: m.h $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-# ---- Cleaning rules (use $(RM) only twice) ----
+clean:
+	$(RM) *~ $(NAME)
+
 oclean:
 	$(RM) $(OBJ)
 
-clean:
-	$(RM) $(NAME) *~ \#*\# .\#* *.swp *.swo *.swn
+fclean: clean oclean
 
-fclean: oclean clean
-
-re: fclean all
-
+re: fclean all 
