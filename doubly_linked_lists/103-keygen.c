@@ -1,74 +1,58 @@
+/*
+ * File: 103-keygen.c
+ * Auth: Brennan D Baraban
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 /**
- * main - key generator for crackme5
- * @argc: number of arguments
- * @argv: argument vector (expects username as argv[1])
+ * main - Generates and prints passwords for the crackme5 executable.
+ * @argc: The number of arguments supplied to the program.
+ * @argv: An array of pointers to the arguments.
  *
- * Return: 0 on success, 1 on usage error
- *
- * Usage: ./keygen5 username
- * Prints the key (no newline).
+ * Return: Always 0.
  */
-int main(int argc, char *argv[])
+int main(int __attribute__((__unused__)) argc, char *argv[])
 {
-	char *user;
-	char key[7];
-	const char *cs = "A-CHRDw87lNS0E9B2TibgpnMJefF36";
-	size_t len;
-	unsigned long tmp;
-	size_t i;
+	char password[7], *codex;
+	int len = strlen(argv[1]), i, tmp;
 
-	if (argc != 2)
-	{
-		printf("Usage: %s username\n", argv[0]);
-		return (1);
-	}
+	codex = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 
-	user = argv[1];
-	len = strlen(user);
+	tmp = (len ^ 59) & 63;
+	password[0] = codex[tmp];
 
-	/* key[0] */
-	key[0] = cs[(len ^ 59UL) & 63UL];
-
-	/* key[1] */
-	tmp = 0UL;
+	tmp = 0;
 	for (i = 0; i < len; i++)
-		tmp += (unsigned char)user[i];
-	key[1] = cs[(tmp ^ 79UL) & 63UL];
+		tmp += argv[1][i];
+	password[1] = codex[(tmp ^ 79) & 63];
 
-	/* key[2] */
-	tmp = 1UL;
+	tmp = 1;
 	for (i = 0; i < len; i++)
-		tmp *= (unsigned char)user[i];
-	key[2] = cs[(tmp ^ 85UL) & 63UL];
+		tmp *= argv[1][i];
+	password[2] = codex[(tmp ^ 85) & 63];
 
-	/* key[3] */
-	tmp = 0UL;
-	for (i = 0; i < len; i++)
-		if ((unsigned char)user[i] > (unsigned char)tmp)
-			tmp = (unsigned char)user[i];
-	srand((unsigned int)((tmp ^ 14UL) & 0xFFFFFFFFUL));
-	key[3] = cs[rand() & 63];
-
-	/* key[4] */
-	tmp = 0UL;
+	tmp = 0;
 	for (i = 0; i < len; i++)
 	{
-		unsigned long c = (unsigned char)user[i];
-		tmp += c * c;
+		if (argv[1][i] > tmp)
+			tmp = argv[1][i];
 	}
-	key[4] = cs[(tmp ^ 239UL) & 63UL];
+	srand(tmp ^ 14);
+	password[3] = codex[rand() & 63];
 
-	/* key[5] */
-	for (i = 0, tmp = 0UL; i < (size_t)(unsigned char)user[0]; i++)
-		tmp = (unsigned long)rand();
-	key[5] = cs[(tmp ^ 229UL) & 63UL];
+	tmp = 0;
+	for (i = 0; i < len; i++)
+		tmp += (argv[1][i] * argv[1][i]);
+	password[4] = codex[(tmp ^ 239) & 63];
 
-	key[6] = '\0';
-	printf("%s", key);
+	for (i = 0; i < argv[1][0]; i++)
+		tmp = rand();
+	password[5] = codex[(tmp ^ 229) & 63];
+
+	password[6] = '\0';
+	printf("%s", password);
 	return (0);
 }
-
